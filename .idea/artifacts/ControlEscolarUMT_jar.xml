@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ControlEscolarUMT:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ControlEscolarUMT_jar</output-path>
+    <root id="archive" name="ControlEscolarUMT.jar">
+      <element id="module-output" name="ControlEscolarUMT" />
+    </root>
+  </artifact>
+</component>
