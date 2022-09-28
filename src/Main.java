@@ -6,13 +6,16 @@ public class Main {
 //
 //        Estudiantes.menuEstudiantes();
 
-        CatalogoAsignatura vista = new CatalogoAsignatura();
+//        CatalogoAsignatura vista = new CatalogoAsignatura();
+//
+//        ControladorAsignatura asignaturas = new ControladorAsignatura(vista);
+//
+//        asignaturas.menuAsignaturas();
 
-        ControladorAsignatura asignaturas = new ControladorAsignatura(vista);
+        CatalogoProfesor vista = new CatalogoProfesor();
 
-        asignaturas.menuAsignaturas();
+        ControladorProfesor Profesores = new ControladorProfesor(vista);
 
-
-
+        Profesores.menuProfesores();
     }
 }
