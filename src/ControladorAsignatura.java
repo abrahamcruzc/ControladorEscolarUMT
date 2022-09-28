@@ -23,7 +23,9 @@ public class ControladorAsignatura {
                     opcion = vista.menu();
                     break;
                 case 2:
-
+                    modificarAsignatura();
+                    System.out.println(estList.subList(1, estList.size()));
+                    opcion = vista.menu();
                     break;
                 case 3:
 
@@ -71,6 +73,8 @@ public class ControladorAsignatura {
         boolean respuestaAgregar = false;
         boolean creditosEnRango = true;
 
+        auxList.add(clave);
+
         do {
 
             for (int i = 0; i < obj1.getClaves1erSemestre().length; i++) {
@@ -99,9 +103,29 @@ public class ControladorAsignatura {
 
                 if (respuestaAgregar) {
                     clave = vista.solicitarClave();
+                    auxList.add(clave);
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
                 }
             }
         } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void modificarAsignatura() {
+        System.out.println("--MENÚ DE ELIMINACIÓN--");
+        String matricula = vista.solicitarMatricula();
+        if (estList.contains(matricula)) {
+            System.out.println("Ingrese la clave de la asignatura a eliminar: ");
+            String clave = vista.solicitarClave();
+            for (int i = 0; i < obj1.getClaves1erSemestre().length; i++) {
+                if (obj1.getClaves1erSemestre()[i].equals(clave)) {
+                    System.out.println("ffffffffffffffffffffff");
+                    estList.remove(obj1.getAsignaturas1erSemestre()[i + 1]);
+                }
+            }
+        }
     }
 
     public void printAsignaturas(int semestre) {
@@ -225,4 +249,5 @@ public class ControladorAsignatura {
                     "Creditos: " + "[" + creditos[i]+ "]");
         }
     }
+
 }

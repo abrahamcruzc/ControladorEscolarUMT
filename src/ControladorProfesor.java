@@ -124,18 +124,22 @@ public class ControladorProfesor {
                 case 1:
                     auxClave = vista.solicitarClave();
                     resultado = modificarNombreProfesor(auxClave);
+                    vista.msgAgregadoExitoso();
                     break;
                 case 2:
                     auxClave = vista.solicitarClave();
                     resultado = modificarEdadProfesor(auxClave);
+                    vista.msgModificacionExitosa();
                     break;
                 case 3:
                     auxClave = vista.solicitarClave();
                     resultado = modificarFacultadProfesor(auxClave);
+                    vista.msgModificacionExitosa();
                     break;
                 case 4:
                     auxClave = vista.solicitarClave();
                     resultado = modificarMateriaProfesor(auxClave);
+                    vista.msgModificacionExitosa();
                     break;
                 case 5:
                     opcion = 5;

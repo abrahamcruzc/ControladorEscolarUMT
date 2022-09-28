@@ -77,6 +77,10 @@ public class CatalogoProfesor {
         System.out.println(descripcion);
     }
 
+    public void msgAgregadoExitoso() {
+        System.out.println("Registro exitoso.");
+    }
+
     public void msgError() {
         System.out.println("Error");
     }
