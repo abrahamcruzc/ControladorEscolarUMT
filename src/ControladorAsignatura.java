@@ -8,8 +8,8 @@ public class ControladorAsignatura {
     Asignatura obj1 = new Asignatura();
 
     ControladorAsignatura(CatalogoAsignatura vista) {
-        estList = new ArrayList<String>();
-        auxList = new ArrayList<String>();
+        estList = new ArrayList<>();
+        auxList = new ArrayList<>();
         this.vista = vista;
     }
 
@@ -23,30 +23,87 @@ public class ControladorAsignatura {
                     opcion = vista.menu();
                     break;
                 case 2:
-                    modificarAsignatura();
-                    System.out.println(estList.subList(1, estList.size()));
+                    eliminarAsignatura();
                     opcion = vista.menu();
                     break;
                 case 3:
-
+                    imprimirKardex();
+                    opcion = vista.menu();
                     break;
             }
         }
     }
 
     public void addAsignaturas() {
+        String clave;
         String matricula = vista.solicitarMatricula();
         int semestre = vista.solicitarSemestre();
         printAsignaturas(semestre);
 
+        switch (semestre) {
+            case 1:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre1(clave);
+                break;
+            case 2:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre2(clave);
+                break;
+            case 3:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre3(clave);
+                break;
+            case 4:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre4(clave);
+                break;
+            case 5:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre5(clave);
+                break;
+            case 6:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre6(clave);
+                break;
+            case 7:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre7(clave);
+                break;
+            case 8:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre8(clave);
+                break;
+            case 9:
+                estList = new ArrayList<>();
+                estList.add(matricula);
+                clave = vista.solicitarClave();
+                addSemestre9(clave);
+                break;
+        }
+    }
+
+    public void eliminarAsignatura() {
+        int semestre = vista.solicitarSemestre();
 
         switch (semestre) {
-
             case 1:
-                estList.add(matricula);
-                String clave = vista.solicitarClave();
-                add1Semestre(clave);
-                System.out.println("Asignaturas añadidas con exito: " + estList.subList(1, estList.size()));
+                eliminarAsignatura1();
                 break;
             case 2:
                 break;
@@ -67,15 +124,49 @@ public class ControladorAsignatura {
         }
     }
 
-    public void add1Semestre(String clave) {
-        boolean claveBoolean;
+    public void imprimirKardex() {
+        int semestre = vista.solicitarSemestre();
+
+        switch (semestre) {
+            case 1:
+                imprimirKardex1();
+                break;
+            case 2:
+                imprimirKardex2();
+                break;
+            case 3:
+                imprimirKardex3();
+                break;
+            case 4:
+                imprimirKardex4();
+                break;
+            case 5:
+                imprimirKardex5();
+                break;
+            case 6:
+                imprimirKardex6();
+                break;
+            case 7:
+                imprimirKardex7();
+                break;
+            case 8:
+                imprimirKardex8();
+                break;
+            case 9:
+                imprimirKardex9();
+                break;
+        }
+    }
+
+
+    public void addSemestre1(String clave) {
+        boolean claveBoolean = false;
         int totalCreditos = 0;
         boolean respuestaAgregar = false;
         boolean creditosEnRango = true;
 
-        auxList.add(clave);
-
         do {
+            auxList.add(clave);
 
             for (int i = 0; i < obj1.getClaves1erSemestre().length; i++) {
                 claveBoolean = obj1.getClaves1erSemestre()[i].equals(clave);
@@ -93,17 +184,17 @@ public class ControladorAsignatura {
                     }
                     vista.msgAsignaturaAgregada();
 
-                    System.out.println("Asignaturas Agregadas = " + estList.subList(1, estList.size()));
-                    System.out.println("Creditos Agredados = " + totalCreditos);
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
                 }
             }
-            
+
             if (creditosEnRango) {
-                respuestaAgregar = vista.respuestaAgregarAsignatura();
+                respuestaAgregar = vista.agregarAsignatura();
 
                 if (respuestaAgregar) {
                     clave = vista.solicitarClave();
-                    auxList.add(clave);
+
                     if (auxList.contains(clave)) {
                         vista.msgAsignaturaRepetida();
                         break;
@@ -113,141 +204,653 @@ public class ControladorAsignatura {
         } while (respuestaAgregar && creditosEnRango);
     }
 
-    public void modificarAsignatura() {
+    public void addSemestre2(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves2doSemestre().length; i++) {
+                claveBoolean = obj1.getClaves2doSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas2doSemestre()[i]);
+                    totalCreditos += obj1.getCreditos2doSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos2doSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre3(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves3erSemestre().length; i++) {
+                claveBoolean = obj1.getClaves3erSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas3erSemestre()[i]);
+                    totalCreditos += obj1.getCreditos3erSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos3erSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre4(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves4toSemestre().length; i++) {
+                claveBoolean = obj1.getClaves4toSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas4toSemestre()[i]);
+                    totalCreditos += obj1.getCreditos4toSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos4toSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre5(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves5toSemestre().length; i++) {
+                claveBoolean = obj1.getClaves5toSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas5toSemestre()[i]);
+                    totalCreditos += obj1.getCreditos5toSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos5toSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre6(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves6toSemestre().length; i++) {
+                claveBoolean = obj1.getClaves6toSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas6toSemestre()[i]);
+                    totalCreditos += obj1.getCreditos6toSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos6toSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre7(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves7moSemestre().length; i++) {
+                claveBoolean = obj1.getClaves7moSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas7moSemestre()[i]);
+                    totalCreditos += obj1.getCreditos7moSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos7moSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre8(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves8voSemestre().length; i++) {
+                claveBoolean = obj1.getClaves8voSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas8voSemestre()[i]);
+                    totalCreditos += obj1.getCreditos8voSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos8voSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void addSemestre9(String clave) {
+        boolean claveBoolean = false;
+        int totalCreditos = 0;
+        boolean respuestaAgregar = false;
+        boolean creditosEnRango = true;
+
+        do {
+            auxList.add(clave);
+
+            for (int i = 0; i < obj1.getClaves9noSemestre().length; i++) {
+                claveBoolean = obj1.getClaves9noSemestre()[i].equals(clave);
+
+                if (claveBoolean) {
+                    estList.add(obj1.getAsignaturas9noSemestre()[i]);
+                    totalCreditos += obj1.getCreditos9noSemestre()[i];
+
+                    if (totalCreditos > 25) {
+                        creditosEnRango = false;
+                        vista.msgCreditosExcedidos();
+                        estList.remove(estList.size() - 1);
+                        totalCreditos -= obj1.getCreditos9noSemestre()[estList.size() - 1];
+                        break;
+                    }
+                    vista.msgAsignaturaAgregada();
+
+                    System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
+                    System.out.println("\tCreditos Agredados = " + totalCreditos);
+                }
+            }
+
+            if (creditosEnRango) {
+                respuestaAgregar = vista.agregarAsignatura();
+
+                if (respuestaAgregar) {
+                    clave = vista.solicitarClave();
+
+                    if (auxList.contains(clave)) {
+                        vista.msgAsignaturaRepetida();
+                        break;
+                    }
+                }
+            }
+        } while (respuestaAgregar && creditosEnRango);
+    }
+
+    public void eliminarAsignatura1() {
         System.out.println("--MENÚ DE ELIMINACIÓN--");
         String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
         if (estList.contains(matricula)) {
-            System.out.println("Ingrese la clave de la asignatura a eliminar: ");
             String clave = vista.solicitarClave();
-            for (int i = 0; i < obj1.getClaves1erSemestre().length; i++) {
-                if (obj1.getClaves1erSemestre()[i].equals(clave)) {
-                    System.out.println("ffffffffffffffffffffff");
-                    estList.remove(obj1.getAsignaturas1erSemestre()[i + 1]);
+
+            for (int j = 0; j < obj1.getClaves1erSemestre().length; j++) {
+                if (obj1.getClaves1erSemestre()[j].equals(clave)) {
+                    estList.remove(obj1.getAsignaturas1erSemestre()[j]);
+                    vista.msgAsignaturaEliminada();
+                }
+            }
+
+            for (int i = 0; i < obj1.getAsignaturas1erSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas1erSemestre()[i])) {
+                    creditos += obj1.getCreditos1erSemestre()[i];
                 }
             }
         }
+        System.out.println("\tAsignaturas: " + estList.subList(1, estList.size()));
+        System.out.println("\tCréditos: " + creditos);
     }
+
+    public void eliminarAsignatura2() {
+
+    }
+
+    public void imprimirKardex1() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas1erSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas1erSemestre()[i])) {
+                    creditos += obj1.getCreditos1erSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex2() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas2doSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas2doSemestre()[i])) {
+                    creditos += obj1.getCreditos2doSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex3() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas3erSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas3erSemestre()[i])) {
+                    creditos += obj1.getCreditos3erSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex4() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas4toSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas4toSemestre()[i])) {
+                    creditos += obj1.getCreditos4toSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex5() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas5toSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas5toSemestre()[i])) {
+                    creditos += obj1.getCreditos5toSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex6() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas6toSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas6toSemestre()[i])) {
+                    creditos += obj1.getCreditos6toSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+    public void imprimirKardex7() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas7moSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas7moSemestre()[i])) {
+                    creditos += obj1.getCreditos7moSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex8() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas8voSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas8voSemestre()[i])) {
+                    creditos += obj1.getCreditos8voSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+    public void imprimirKardex9() {
+        String matricula = vista.solicitarMatricula();
+        int creditos = 0;
+
+        if (estList.contains(matricula)) {
+
+            for (int i = 0; i < obj1.getAsignaturas9noSemestre().length; i++) {
+                if (estList.contains(obj1.getAsignaturas9noSemestre()[i])) {
+                    creditos += obj1.getCreditos9noSemestre()[i];
+                }
+            }
+
+            System.out.println("Asignaturas: " + estList.subList(1, estList.size()));
+            System.out.println("Creditos: " + creditos);
+            System.out.println();
+        } else {
+            vista.msgNoEncuentraKardex();
+        }
+    }
+
+
 
     public void printAsignaturas(int semestre) {
         switch (semestre) {
-            case 1 -> print1erSemestre();
-            case 2 -> print2doSemestre();
-            case 3 -> print3erSemestre();
-            case 4 -> print4toSemestre();
-            case 5 -> print5toSemestre();
-            case 6 -> print6toSemestre();
-            case 7 -> print7moSemestre();
-            case 8 -> print8voSemestre();
-            case 9 -> print9noSemestre();
+            case 1:
+                System.out.println("\n- ASIGNATURAS PRIMER SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas1erSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves1erSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos1erSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas1erSemestre()[i]+ "]");
+                }
+                break;
+            case 2:
+                System.out.println("\n- ASIGNATURAS SEGUNDO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas2doSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves2doSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos2doSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas2doSemestre()[i]+ "]");
+                }
+                break;
+            case 3:
+                System.out.println("\n- ASIGNATURAS TERCER SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas3erSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves3erSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos3erSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas3erSemestre()[i]+ "]");
+                }
+                break;
+            case 4:
+                System.out.println("\n- ASIGNATURAS CUARTO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas4toSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves4toSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos4toSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas4toSemestre()[i]+ "]");
+                }
+                break;
+            case 5:
+                System.out.println("\n- ASIGNATURAS QUINTO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas5toSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves5toSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos5toSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas5toSemestre()[i]+ "]");
+                }
+                break;
+            case 6:
+                System.out.println("\n- ASIGNATURAS SEXTO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas6toSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves6toSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos6toSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas6toSemestre()[i]+ "]");
+                }
+                break;
+            case 7:
+                System.out.println("\n- ASIGNATURAS SEPTIMO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas7moSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves7moSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos7moSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas7moSemestre()[i]+ "]");
+                }
+                break;
+            case 8:
+                System.out.println("\n- ASIGNATURAS OCTAVO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas8voSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves8voSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos8voSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas8voSemestre()[i]+ "]");
+                }
+                break;
+            case 9:
+                System.out.println("\n- ASIGNATURAS NOVENO SEMESTRE -");
+                for (int i = 0; i < obj1.getAsignaturas9noSemestre().length; i++) {
+                    System.out.println("Clave: " + "[" + obj1.getClaves9noSemestre()[i] + "]" + " " +
+                            "Créditos: " + "[" + obj1.getCreditos9noSemestre()[i] + "]" + " " +
+                            "Asignatura: " + "[" + obj1.getAsignaturas9noSemestre()[i]+ "]");
+                }
+                break;
         }
     }
 
-    public void print1erSemestre() {
-        String[] asignaturas = obj1.getAsignaturas1erSemestre();
-        String[] claves = obj1.getClaves1erSemestre();
-        Integer[] creditos = obj1.getCreditos1erSemestre();
 
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print2doSemestre() {
-        String[] asignaturas = obj1.getAsignaturas2doSemestre();
-        String[] claves = obj1.getClaves2doSemestre();
-        Integer[] creditos = obj1.getCreditos2doSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print3erSemestre() {
-        String[] asignaturas = obj1.getAsignaturas3erSemestre();
-        String[] claves = obj1.getClaves3erSemestre();
-        Integer[] creditos = obj1.getCreditos3erSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print4toSemestre() {
-        String[] asignaturas = obj1.getAsignaturas4toSemestre();
-        String[] claves = obj1.getClaves4toSemestre();
-        Integer[] creditos = obj1.getCreditos4toSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print5toSemestre() {
-        String[] asignaturas = obj1.getAsignaturas5toSemestre();
-        String[] claves = obj1.getClaves5toSemestre();
-        Integer[] creditos = obj1.getCreditos5toSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print6toSemestre() {
-        String[] asignaturas = obj1.getAsignaturas6toSemestre();
-        String[] claves = obj1.getClaves6toSemestre();
-        Integer[] creditos = obj1.getCreditos6toSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print7moSemestre() {
-        String[] asignaturas = obj1.getAsignaturas7moSemestre();
-        String[] claves = obj1.getClaves7moSemestre();
-        Integer[] creditos = obj1.getCreditos7moSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print8voSemestre() {
-        String[] asignaturas = obj1.getAsignaturas8voSemestre();
-        String[] claves = obj1.getClaves8voSemestre();
-        Integer[] creditos = obj1.getCreditos8voSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
-
-    public void print9noSemestre() {
-        String[] asignaturas = obj1.getAsignaturas9noSemestre();
-        String[] claves = obj1.getClaves9noSemestre();
-        Integer[] creditos = obj1.getCreditos9noSemestre();
-
-        for (int i = 0; i < asignaturas.length; i++) {
-            System.out.println("Clave: " + "[" + claves[i] + "]" + " " +
-                    "Asignatura: " + "[" + asignaturas[i] + "]" + " " +
-                    "Creditos: " + "[" + creditos[i]+ "]");
-        }
-    }
 
 }

@@ -11,7 +11,7 @@ public class CatalogoAsignatura {
         do {
             System.out.println("Menu Asignaturas");
             System.out.println("1. Añadir Asignatura al Kardex");
-            System.out.println("2. Eliminar Asignatura al Kardex");
+            System.out.println("2. Eliminar Asignatura del Kardex");
             System.out.println("3. Mostrar Kardex");
             System.out.println("4. Salir");
             System.out.print("Opcion: ");
@@ -29,7 +29,7 @@ public class CatalogoAsignatura {
         int semestre = 0;
 
         do {
-            System.out.println("Ingrese su semestre: ");
+            System.out.print("\nIngrese su semestre: ");
             semestre = scanner.nextInt();
 
             if ((semestre < 1) || (semestre > 9)) {
@@ -45,7 +45,7 @@ public class CatalogoAsignatura {
         boolean matriculaBoolean;
 
         do {
-            System.out.println("Ingrese su matricula: ");
+            System.out.print("\nIngrese su matricula: ");
             matricula = scanner.next();
 
             matriculaBoolean = matricula.isBlank();
@@ -62,7 +62,7 @@ public class CatalogoAsignatura {
         boolean claveBoolean;
 
         do {
-            System.out.println("Ingrese la clave de la materia: ");
+            System.out.print("\nIngrese la clave de la materia: ");
             clave = scanner.next();
 
             claveBoolean = ((clave.isBlank()) || (clave.length() != 4));
@@ -74,12 +74,12 @@ public class CatalogoAsignatura {
         return clave.toUpperCase();
     }
 
-    public boolean respuestaAgregarAsignatura() {
+    public boolean agregarAsignatura() {
         String respuesta = "N/A";
         boolean respuestaBoolean;
 
         do {
-            System.out.println("Desea agregar otra asignatura? (S/N)");
+            System.out.print("\n¿Desea agregar otra asignatura? (S/N): ");
             respuesta = scanner.next();
 
             respuestaBoolean = ((respuesta.isBlank()) || (respuesta.length() != 1) ||
@@ -111,6 +111,10 @@ public class CatalogoAsignatura {
 
     public void msgAsignaturaRepetida() {
         System.out.println("Asignatura repetida. No puedes agregarla de nuevo.");
+    }
+
+    public void msgNoEncuentraKardex() {
+        System.out.println("No se encontró ningún Kardex relacionado con la matrícula ingresada.");
     }
 
 
