@@ -4,31 +4,31 @@ public class ControladorAsignatura {
 
     ArrayList<String> estList;
     ArrayList<String> auxList;
-    CatalogoAsignatura vista;
+    CatalogoAsignatura vistaAsignatura;
     Asignatura obj1 = new Asignatura();
 
-    ControladorAsignatura(CatalogoAsignatura vista) {
+    ControladorAsignatura(CatalogoAsignatura vistaAsignatura) {
         estList = new ArrayList<>();
         auxList = new ArrayList<>();
-        this.vista = vista;
+        this.vistaAsignatura = vistaAsignatura;
     }
 
     public void menuAsignaturas() {
-        int opcion = vista.menu();
+        int opcion = vistaAsignatura.menu();
 
         while (opcion != 4) {
             switch (opcion) {
                 case 1:
                     addAsignaturas();
-                    opcion = vista.menu();
+                    opcion = vistaAsignatura.menu();
                     break;
                 case 2:
                     eliminarAsignatura();
-                    opcion = vista.menu();
+                    opcion = vistaAsignatura.menu();
                     break;
                 case 3:
                     imprimirKardex();
-                    opcion = vista.menu();
+                    opcion = vistaAsignatura.menu();
                     break;
             }
         }
@@ -36,70 +36,70 @@ public class ControladorAsignatura {
 
     public void addAsignaturas() {
         String clave;
-        String matricula = vista.solicitarMatricula();
-        int semestre = vista.solicitarSemestre();
+        String matricula = vistaAsignatura.solicitarMatricula();
+        int semestre = vistaAsignatura.solicitarSemestre();
         printAsignaturas(semestre);
 
         switch (semestre) {
             case 1:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre1(clave);
                 break;
             case 2:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre2(clave);
                 break;
             case 3:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre3(clave);
                 break;
             case 4:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre4(clave);
                 break;
             case 5:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre5(clave);
                 break;
             case 6:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre6(clave);
                 break;
             case 7:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre7(clave);
                 break;
             case 8:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre8(clave);
                 break;
             case 9:
                 estList = new ArrayList<>();
                 estList.add(matricula);
-                clave = vista.solicitarClave();
+                clave = vistaAsignatura.solicitarClave();
                 addSemestre9(clave);
                 break;
         }
     }
 
     public void eliminarAsignatura() {
-        int semestre = vista.solicitarSemestre();
+        int semestre = vistaAsignatura.solicitarSemestre();
 
         switch (semestre) {
             case 1:
@@ -125,7 +125,7 @@ public class ControladorAsignatura {
     }
 
     public void imprimirKardex() {
-        int semestre = vista.solicitarSemestre();
+        int semestre = vistaAsignatura.solicitarSemestre();
 
         switch (semestre) {
             case 1:
@@ -177,12 +177,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos1erSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -190,13 +190,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -222,12 +222,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos2doSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -235,13 +235,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -267,12 +267,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos3erSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -280,13 +280,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -312,12 +312,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos4toSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -325,13 +325,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -357,12 +357,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos5toSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -370,13 +370,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -402,12 +402,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos6toSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -415,13 +415,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -447,12 +447,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos7moSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -460,13 +460,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -492,12 +492,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos8voSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -505,13 +505,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -537,12 +537,12 @@ public class ControladorAsignatura {
 
                     if (totalCreditos > 25) {
                         creditosEnRango = false;
-                        vista.msgCreditosExcedidos();
+                        vistaAsignatura.msgCreditosExcedidos();
                         estList.remove(estList.size() - 1);
                         totalCreditos -= obj1.getCreditos9noSemestre()[estList.size() - 1];
                         break;
                     }
-                    vista.msgAsignaturaAgregada();
+                    vistaAsignatura.msgAsignaturaAgregada();
 
                     System.out.println("\tAsignaturas Agregadas = " + estList.subList(1, estList.size()));
                     System.out.println("\tCreditos Agredados = " + totalCreditos);
@@ -550,13 +550,13 @@ public class ControladorAsignatura {
             }
 
             if (creditosEnRango) {
-                respuestaAgregar = vista.agregarAsignatura();
+                respuestaAgregar = vistaAsignatura.agregarAsignatura();
 
                 if (respuestaAgregar) {
-                    clave = vista.solicitarClave();
+                    clave = vistaAsignatura.solicitarClave();
 
                     if (auxList.contains(clave)) {
-                        vista.msgAsignaturaRepetida();
+                        vistaAsignatura.msgAsignaturaRepetida();
                         break;
                     }
                 }
@@ -566,16 +566,16 @@ public class ControladorAsignatura {
 
     public void eliminarAsignatura1() {
         System.out.println("--MENÚ DE ELIMINACIÓN--");
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
-            String clave = vista.solicitarClave();
+            String clave = vistaAsignatura.solicitarClave();
 
             for (int j = 0; j < obj1.getClaves1erSemestre().length; j++) {
                 if (obj1.getClaves1erSemestre()[j].equals(clave)) {
                     estList.remove(obj1.getAsignaturas1erSemestre()[j]);
-                    vista.msgAsignaturaEliminada();
+                    vistaAsignatura.msgAsignaturaEliminada();
                 }
             }
 
@@ -594,7 +594,7 @@ public class ControladorAsignatura {
     }
 
     public void imprimirKardex1() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -609,12 +609,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex2() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -629,12 +629,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex3() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -649,12 +649,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex4() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -669,12 +669,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex5() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -689,12 +689,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex6() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -709,11 +709,11 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
     public void imprimirKardex7() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -728,12 +728,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex8() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -748,12 +748,12 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 
     public void imprimirKardex9() {
-        String matricula = vista.solicitarMatricula();
+        String matricula = vistaAsignatura.solicitarMatricula();
         int creditos = 0;
 
         if (estList.contains(matricula)) {
@@ -768,7 +768,7 @@ public class ControladorAsignatura {
             System.out.println("Creditos: " + creditos);
             System.out.println();
         } else {
-            vista.msgNoEncuentraKardex();
+            vistaAsignatura.msgNoEncuentraKardex();
         }
     }
 

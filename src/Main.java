@@ -6,9 +6,9 @@ public class Main {
 //
 //        Estudiantes.menuEstudiantes();
 
-        CatalogoAsignatura vista = new CatalogoAsignatura();
+        CatalogoAsignatura vistaAsignatura = new CatalogoAsignatura();
 
-        ControladorAsignatura asignaturas = new ControladorAsignatura(vista);
+        ControladorAsignatura asignaturas = new ControladorAsignatura(vistaAsignatura);
 
         asignaturas.menuAsignaturas();
 
