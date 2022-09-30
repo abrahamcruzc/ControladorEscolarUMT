@@ -16,21 +16,22 @@ public class ControladorPrincipal {
     }
 
     public void menuPrincipal() {
-        int opcion = vistaPrincipal.menu();
+        int opcion = 0;
 
         while (opcion != 4) {
-            switch (opcion) {
+            switch (vistaPrincipal.menu()) {
                 case 1:
                     estudiantes.menuEstudiantes();
-                    opcion = vistaPrincipal.menu();
                     break;
                 case 2:
                     profesores.menuProfesores();
-                    opcion = vistaPrincipal.menu();
                     break;
                 case 3:
                     asignaturas.menuAsignaturas();
-                    opcion = vistaPrincipal.menu();
+                    break;
+                case 4:
+                    opcion = 4;
+                    vistaPrincipal.msgGracias();
                     break;
             }
         }

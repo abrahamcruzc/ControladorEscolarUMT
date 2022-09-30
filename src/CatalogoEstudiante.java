@@ -46,7 +46,7 @@ public class CatalogoEstudiante {
 
     public Integer menu() {
         scanner = new Scanner(System.in);
-        System.out.println("Menu");
+        System.out.println("\n- MENÚ ESTUDIANTE -");
         System.out.println("1- Agregar Estudiante");
         System.out.println("2- Borrar Estudiante");
         System.out.println("3- Modificar Estudiante");
@@ -88,10 +88,6 @@ public class CatalogoEstudiante {
 
     public void imprimirInfoEstudiante(Estudiante obj1) {
         System.out.println(obj1);
-    }
-
-    public void msgGracias() {
-        System.out.println("Gracias por utilizar el sistema.");
     }
 
     public void msgVersion() {

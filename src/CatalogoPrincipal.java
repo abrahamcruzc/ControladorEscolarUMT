@@ -22,4 +22,8 @@ public class CatalogoPrincipal {
 
         return opcion;
     }
+
+    public void msgGracias() {
+        System.out.println("Gracias por utilizar el sistema.");
+    }
 }
