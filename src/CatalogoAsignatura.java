@@ -6,19 +6,19 @@ public class CatalogoAsignatura {
     Scanner scanner = new Scanner(System.in);
 
     public int menu() {
-        int opcion = 0;
+        int opcion;
 
         do {
-            System.out.println("Menu Asignaturas");
+            System.out.println("\n- MENÚ ASIGNATURAS -");
             System.out.println("1. Añadir Asignatura al Kardex");
             System.out.println("2. Eliminar Asignatura del Kardex");
             System.out.println("3. Mostrar Kardex");
             System.out.println("4. Salir");
-            System.out.print("Opcion: ");
+            System.out.print("Opción: ");
             opcion = scanner.nextInt();
 
             if ((opcion < 1) || (opcion > 4)) {
-                System.out.println("Verifique que la opcion ingresada se encuentre en el menu.");
+                System.out.println("Verifique que la opción ingresada se encuentre en el menu.");
             }
         } while((opcion < 1) || (opcion > 4));
 
@@ -26,14 +26,14 @@ public class CatalogoAsignatura {
     }
 
     public int solicitarSemestre() {
-        int semestre = 0;
+        int semestre;
 
         do {
-            System.out.print("\nIngrese su semestre: ");
+            System.out.print("Ingrese su semestre: ");
             semestre = scanner.nextInt();
 
             if ((semestre < 1) || (semestre > 9)) {
-                System.out.println("Verifieque el semestre ingresado.");
+                System.out.println("Verifique que el semestre ingresado sea correcto.");
             }
         } while((semestre < 1) || (semestre > 9));
 
@@ -41,16 +41,16 @@ public class CatalogoAsignatura {
     }
 
     public String solicitarMatricula() {
-        String matricula = "N/A";
+        String matricula;
         boolean matriculaBoolean;
 
         do {
-            System.out.print("\nIngrese su matricula: ");
+            System.out.print("Ingrese su matrícula: ");
             matricula = scanner.next();
 
             matriculaBoolean = matricula.isBlank();
             if (matriculaBoolean) {
-                System.out.println("Verifique la matricula ingresada.");
+                System.out.println("Verifique que la matrícula ingresada sea correcta.");
             }
         } while (matriculaBoolean);
 
@@ -58,16 +58,16 @@ public class CatalogoAsignatura {
     }
 
     public String solicitarClave() {
-        String clave = "N/A";
+        String clave;
         boolean claveBoolean;
 
         do {
-            System.out.print("\nIngrese la clave de la materia: ");
+            System.out.print("Ingrese la clave de la asignatura: ");
             clave = scanner.next();
 
             claveBoolean = ((clave.isBlank()) || (clave.length() != 4));
             if (claveBoolean) {
-                System.out.println("Verifique la clave ingresada.");
+                System.out.println("Verifique que la clave ingresada sea correcta.");
             }
         } while(claveBoolean);
 
@@ -75,7 +75,7 @@ public class CatalogoAsignatura {
     }
 
     public boolean agregarAsignatura() {
-        String respuesta = "N/A";
+        String respuesta;
         boolean respuestaBoolean;
 
         do {
@@ -94,11 +94,11 @@ public class CatalogoAsignatura {
     }
 
     public void msgAsignaturaAgregada() {
-        System.out.println("Asignatura agregada con exito.");
+        System.out.println("Asignatura agregada con éxito.");
     }
 
     public void msgAsignaturaEliminada() {
-        System.out.println("Asignatura eliminada con exito.");
+        System.out.println("Asignatura eliminada con éxito.");
     }
 
     public void msgAsignaturaNoCorresponde() {
@@ -106,7 +106,7 @@ public class CatalogoAsignatura {
     }
 
     public void msgCreditosExcedidos() {
-        System.out.println("Creditos excedidos. No puedes agregar mas asignaturas.");
+        System.out.println("Créditos excedidos. No puedes agregar más asignaturas.");
     }
 
     public void msgAsignaturaRepetida() {
