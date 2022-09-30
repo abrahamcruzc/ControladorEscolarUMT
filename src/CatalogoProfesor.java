@@ -100,7 +100,7 @@ public class CatalogoProfesor {
     public Integer menuModificarProfesor() {
         scanner = new Scanner(System.in);
         //scanner.useDelimiter("\n");
-        System.out.println("Menu modificacion");
+        System.out.println("\n- MENÚ MODIFICAR PROFESOR -");
         System.out.println("1- Nombre del Profesor");
         System.out.println("2- Edad del Profesor");
         System.out.println("3- Facultad del profesor");

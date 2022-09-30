@@ -1,51 +1,52 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ControladorProfesor {
 
     ArrayList<Profesor> estList;
-    CatalogoProfesor vista;
+    CatalogoProfesor vistaProfesor;
     Profesor obj1;
 
-    ControladorProfesor(CatalogoProfesor vista) {
+    ControladorProfesor(CatalogoProfesor vistaProfesor) {
         estList = new ArrayList<Profesor>();
-        this.vista = vista;
-        this.vista.msgVersion();
+        this.vistaProfesor = vistaProfesor;
+        this.vistaProfesor.msgVersion();
     }
 
     public void addProfesor() {
-        obj1 = new Profesor(vista.solicitarNombre(),
-                vista.solicitarMateria(),
-                vista.solicitarEdad(),
-                vista.solicitarFacultad(),
-                vista.solicitarClave());
+        obj1 = new Profesor(vistaProfesor.solicitarNombre(),
+                vistaProfesor.solicitarMateria(),
+                vistaProfesor.solicitarEdad(),
+                vistaProfesor.solicitarFacultad(),
+                vistaProfesor.solicitarClave());
         estList.add(obj1);
     }
 
     public void menuProfesores(){
         int opcion = 0;
         while (opcion != 6){
-            switch (vista.menu()){
+            switch (vistaProfesor.menu()){
                 case 1:
                     addProfesor();
                     break;
                 case 2:
-                    Integer aux = vista.solicitarClave();
-                    vista.imprimeInfoBorrado(borrarProfesor(aux));
+                    Integer aux = vistaProfesor.solicitarClave();
+                    vistaProfesor.imprimeInfoBorrado(borrarProfesor(aux));
                     break;
                 case 3:
                     menuModificarProfesor();
                     break;
                 case 4:
-                    vista.imprimirInfoTotal(estList);
+                    vistaProfesor.imprimirInfoTotal(estList);
                     break;
                 case 5:
-                    aux = vista.solicitarClave();
+                    aux = vistaProfesor.solicitarClave();
                     Integer pos = buscarProfesor(aux);
-                    vista.imprimirInfoProfesor(estList.get(pos));
+                    vistaProfesor.imprimirInfoProfesor(estList.get(pos));
                     break;
                 case 6:
                     opcion = 6;
-                    vista.msgGracias();
+                    vistaProfesor.msgGracias();
                     break;
             }
         }
@@ -53,7 +54,7 @@ public class ControladorProfesor {
 
     private Integer buscarProfesor(Integer clave) {
         for (int i = 0; i < estList.size(); i++){
-            if (clave == estList.get(i).getClave()) {
+            if (Objects.equals(clave, estList.get(i).getClave())) {
                 return i;
             }
         }
@@ -73,8 +74,8 @@ public class ControladorProfesor {
     public boolean modificarNombreProfesor(Integer clave) {
         Integer indiceProfesor = buscarProfesor(clave);
         if (indiceProfesor != -1) {
-            vista.imprimirInfoProfesor(estList.get(indiceProfesor));
-            estList.get(indiceProfesor).setNombre(vista.solicitarNombre());
+            vistaProfesor.imprimirInfoProfesor(estList.get(indiceProfesor));
+            estList.get(indiceProfesor).setNombre(vistaProfesor.solicitarNombre());
             return true;
         } else {
             return false;
@@ -84,8 +85,8 @@ public class ControladorProfesor {
     public boolean modificarEdadProfesor(Integer clave) {
         Integer indiceProfesor = buscarProfesor(clave);
         if (indiceProfesor != -1) {
-            vista.imprimirInfoProfesor(estList.get(indiceProfesor));
-            estList.get(indiceProfesor).setEdad(vista.solicitarEdad());
+            vistaProfesor.imprimirInfoProfesor(estList.get(indiceProfesor));
+            estList.get(indiceProfesor).setEdad(vistaProfesor.solicitarEdad());
             return true;
         } else {
             return false;
@@ -95,8 +96,8 @@ public class ControladorProfesor {
     public boolean modificarFacultadProfesor(Integer clave) {
         Integer indiceProfesor = buscarProfesor(clave);
         if (indiceProfesor != -1) {
-            vista.imprimirInfoProfesor(estList.get(indiceProfesor));
-            estList.get(indiceProfesor).setEdad(vista.solicitarEdad());
+            vistaProfesor.imprimirInfoProfesor(estList.get(indiceProfesor));
+            estList.get(indiceProfesor).setEdad(vistaProfesor.solicitarEdad());
             return true;
         } else {
             return false;
@@ -106,8 +107,8 @@ public class ControladorProfesor {
     public boolean modificarMateriaProfesor(Integer clave) {
         Integer indiceProfesor = buscarProfesor(clave);
         if (indiceProfesor != -1) {
-            vista.imprimirInfoProfesor(estList.get(indiceProfesor));
-            estList.get(indiceProfesor).setEdad(vista.solicitarEdad());
+            vistaProfesor.imprimirInfoProfesor(estList.get(indiceProfesor));
+            estList.get(indiceProfesor).setEdad(vistaProfesor.solicitarEdad());
             return true;
         } else {
             return false;
@@ -120,26 +121,26 @@ public class ControladorProfesor {
         boolean resultado;
 
         while (opcion != 5) {
-            switch (vista.menuModificarProfesor()) {
+            switch (vistaProfesor.menuModificarProfesor()) {
                 case 1:
-                    auxClave = vista.solicitarClave();
+                    auxClave = vistaProfesor.solicitarClave();
                     resultado = modificarNombreProfesor(auxClave);
-                    vista.msgAgregadoExitoso();
+                    vistaProfesor.msgAgregadoExitoso();
                     break;
                 case 2:
-                    auxClave = vista.solicitarClave();
+                    auxClave = vistaProfesor.solicitarClave();
                     resultado = modificarEdadProfesor(auxClave);
-                    vista.msgModificacionExitosa();
+                    vistaProfesor.msgModificacionExitosa();
                     break;
                 case 3:
-                    auxClave = vista.solicitarClave();
+                    auxClave = vistaProfesor.solicitarClave();
                     resultado = modificarFacultadProfesor(auxClave);
-                    vista.msgModificacionExitosa();
+                    vistaProfesor.msgModificacionExitosa();
                     break;
                 case 4:
-                    auxClave = vista.solicitarClave();
+                    auxClave = vistaProfesor.solicitarClave();
                     resultado = modificarMateriaProfesor(auxClave);
-                    vista.msgModificacionExitosa();
+                    vistaProfesor.msgModificacionExitosa();
                     break;
                 case 5:
                     opcion = 5;
@@ -147,5 +148,4 @@ public class ControladorProfesor {
             }
         }
     }
-
 }

@@ -3,50 +3,50 @@ import java.util.ArrayList;
 public class ControladorEstudiante {
 
     ArrayList<Estudiante> estList;
-    CatalogoEstudiante vista;
+    CatalogoEstudiante vistaEstudiante;
     Estudiante obj1;
 
-    ControladorEstudiante(CatalogoEstudiante vista) {
+    ControladorEstudiante(CatalogoEstudiante vistaEstudiante) {
         estList = new ArrayList<Estudiante>();
-        this.vista = vista;
-        this.vista.msgVersion();
+        this.vistaEstudiante = vistaEstudiante;
+        this.vistaEstudiante.msgVersion();
     }
 
     public void addEstudiante() {
-        obj1 = new Estudiante(vista.solicitarMatricula(),
-                vista.solicitarNombre(),
-                vista.solicitarEdad(),
-                vista.solicitarSemestre(),
-                vista.solicitarFacultad(),
-                vista.solicitarPromedio());
+        obj1 = new Estudiante(vistaEstudiante.solicitarMatricula(),
+                vistaEstudiante.solicitarNombre(),
+                vistaEstudiante.solicitarEdad(),
+                vistaEstudiante.solicitarSemestre(),
+                vistaEstudiante.solicitarFacultad(),
+                vistaEstudiante.solicitarPromedio());
         estList.add(obj1);
     }
 
     public void menuEstudiantes(){
         int opcion = 0;
         while (opcion != 6){
-            switch (vista.menu()){
+            switch (vistaEstudiante.menu()){
                 case 1:
                     addEstudiante();
                     break;
                 case 2:
-                    Integer aux = vista.solicitarMatricula();
-                    vista.imprimeInfoBorrado(borrarEstudiante(aux));
+                    Integer aux = vistaEstudiante.solicitarMatricula();
+                    vistaEstudiante.imprimeInfoBorrado(borrarEstudiante(aux));
                     break;
                 case 3:
                     menuModificarEstudiante();
                     break;
                 case 4:
-                    vista.imprimirInfoTotal(estList);
+                    vistaEstudiante.imprimirInfoTotal(estList);
                     break;
                 case 5:
-                    aux = vista.solicitarMatricula();
+                    aux = vistaEstudiante.solicitarMatricula();
                     Integer pos = buscarEstudiante(aux);
-                    vista.imprimirInfoEstudiante(estList.get(pos));
+                    vistaEstudiante.imprimirInfoEstudiante(estList.get(pos));
                     break;
                 case 6:
                     opcion = 6;
-                    vista.msgGracias();
+                    vistaEstudiante.msgGracias();
                     break;
             }
         }
@@ -74,8 +74,8 @@ public class ControladorEstudiante {
     public boolean modificarNombreEstudiante(Integer matricula) {
         Integer indiceEstudiante = buscarEstudiante(matricula);
         if (indiceEstudiante != -1) {
-            vista.imprimirInfoEstudiante(estList.get(indiceEstudiante));
-            estList.get(indiceEstudiante).setNombre(vista.solicitarNombre());
+            vistaEstudiante.imprimirInfoEstudiante(estList.get(indiceEstudiante));
+            estList.get(indiceEstudiante).setNombre(vistaEstudiante.solicitarNombre());
             return true;
         } else {
             return false;
@@ -85,8 +85,8 @@ public class ControladorEstudiante {
     public boolean modificarEdadEstudiante(Integer matricula) {
         Integer indiceEstudiante = buscarEstudiante(matricula);
         if (indiceEstudiante != -1) {
-            vista.imprimirInfoEstudiante(estList.get(indiceEstudiante));
-            estList.get(indiceEstudiante).setEdad(vista.solicitarEdad());
+            vistaEstudiante.imprimirInfoEstudiante(estList.get(indiceEstudiante));
+            estList.get(indiceEstudiante).setEdad(vistaEstudiante.solicitarEdad());
             return true;
         } else {
             return false;
@@ -96,8 +96,8 @@ public class ControladorEstudiante {
     public boolean modificarPromedioEstudiante(Integer matricula) {
         Integer indiceEstudiante = buscarEstudiante(matricula);
         if (indiceEstudiante != -1) {
-            vista.imprimirInfoEstudiante(estList.get(indiceEstudiante));
-            estList.get(indiceEstudiante).setPromedio(vista.solicitarPromedio());
+            vistaEstudiante.imprimirInfoEstudiante(estList.get(indiceEstudiante));
+            estList.get(indiceEstudiante).setPromedio(vistaEstudiante.solicitarPromedio());
             return true;
         } else {
             return false;
@@ -110,17 +110,17 @@ public class ControladorEstudiante {
         boolean resultado;
 
         while (opcion != 4) {
-            switch (vista.menuModificarEstudiante()) {
+            switch (vistaEstudiante.menuModificarEstudiante()) {
                 case 1:
-                    auxMatricula = vista.solicitarMatricula();
+                    auxMatricula = vistaEstudiante.solicitarMatricula();
                     resultado = modificarNombreEstudiante(auxMatricula);
                     break;
                 case 2:
-                    auxMatricula = vista.solicitarMatricula();
+                    auxMatricula = vistaEstudiante.solicitarMatricula();
                     resultado = modificarEdadEstudiante(auxMatricula);
                     break;
                 case 3:
-                    auxMatricula = vista.solicitarMatricula();
+                    auxMatricula = vistaEstudiante.solicitarMatricula();
                     resultado = modificarPromedioEstudiante(auxMatricula);
                     break;
                 case 4:

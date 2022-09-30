@@ -18,7 +18,7 @@ public class CatalogoAsignatura {
             opcion = scanner.nextInt();
 
             if ((opcion < 1) || (opcion > 4)) {
-                System.out.println("Verifique que la opción ingresada se encuentre en el menu.");
+                System.out.println("Verifique que la opción ingresada se encuentre en el menú.");
             }
         } while((opcion < 1) || (opcion > 4));
 
